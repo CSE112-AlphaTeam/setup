@@ -11,7 +11,7 @@
 * Neither the domain nor the personalized part can have a “.” as the first or last last character or two consecutive “.”. 
 * The whole message body should not exceed the length of 64 characters White space at the beginning and end will be ignored
 */
-export.isValidEmail = function(email)
+exports.isValidEmail = function(email)
 {
     email = email.trim();
     if (email.length > 64)
