@@ -153,13 +153,27 @@
 
   <script>
 
+  function isValidEmail(email)
+  {
+      email = email.trim();
+      if (email.length > 64)
+      {
+        return false;
+      }
+      else
+      {
+        return email.search(/^[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/) != -1;
+      }
+  };
+
+
   function formatEmail()
   {
     var inputPersonalized = document.getElementById("inputPersonalized").value;
 
     var inputDomain = document.getElementById("inputDomain").value;
     var combined = inputPersonalized + "@" + inputDomain;
-    if(true)
+    if(isValidEmail(combined))
     {
       document.getElementById("resultText").innerHTML = "Success! This is a valid email! Send this person an email here!";
       document.getElementById("successLink").innerHTML = combined;
