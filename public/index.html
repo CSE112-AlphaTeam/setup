@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>Alpha Team</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/3.7.8/firebase-app.js"></script>
@@ -29,7 +29,71 @@
         body { border-top: 16px solid #ffa100; }
       }
     </style>
+
+    <!--START BOOTSTRAP-->
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+      </script>
+    <!--END BOOTSTRAP-->
+
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #eee;
+      }
+      .form-format{
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+      }
+      .form-format .form-format-heading,
+      .form-format {
+        margin-bottom: 10px;
+      }
+      .form-format {
+        font-weight: normal;
+      }
+      .form-format .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .form-format .form-control:focus {
+        z-index: 2;
+      }
+      .form-format input[type="personalized"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      .form-format input[type="domain"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+      .result {
+        font-size: 16px;
+      }
+    </style>
   </head>
+
   <body>
     <!--
     <div id="message">
@@ -42,32 +106,136 @@
     <p id="load">Firebase SDK Loading&hellip;</p>
     -->
 
+   <!-- Start Bootstrap nav bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Alpha Team</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#" onclick="showOnly('formatDisplay');">Format Email</a></li>
+            <li><a href="#" onclick="showOnly('fooDisplay');">Foo</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <!-- End Bootstrap nav bar-->
 
-    <center>
-      Input for foo: <input type="text" placeholder="" id="inputFoo" />
-      <br /><br />
-      <button type="button" onclick="callFoo();">Check</button>
-    </center>
-    <script>
+    <div id="formatDisplay">
+      <form class="form-format" onsubmit="formatEmail();" action="#">
+        <h2 class="form-format-heading">Format Email</h2>
+        <input type="personalized" id="inputPersonalized" placeholder="Personalized Part" class="form-control" required autofocus />
+        <input type="domain" id="inputDomain" placeholder="Domain" class="form-control" required />
+        <button class="btn btn-lg btn-primary btn-block" type='submit'>Sign in</button>
+      </form>
+      <center>
+        <b id="resultText" class="result"></b><br />
+        <a id="successLink" href="" class="result"></a>
+      </center>
+    </div>
 
+    <div id="fooDisplay" style="display:none">
+      <form class="form-format" onsubmit="callFoo()" action="#">
+        <h2 class="form-format-heading">Foo</h2>
+        <p id="fooInstructions"><i>Enter a string to check if it's equal to baz</i></p>
+        <input type="text" id="inputFoo" placeholder="Input Here" class="form-control" style="margin-bottom: 10px;" required autofocus />
+        <button class="btn btn-lg btn-primary btn-block" type='submit'>Check</button>
+      </form>
+    </div>
+
+
+  <script>
+
+  function isValidEmail(email)
+  {
+      email = email.trim();
+      if (email.length > 64)
+      {
+        return false;
+      }
+      else
+      {
+        return email.search(/^[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/) != -1;
+      }
+  };
+
+
+  function formatEmail()
+  {
+    var inputPersonalized = document.getElementById("inputPersonalized").value;
+
+    var inputDomain = document.getElementById("inputDomain").value;
+    var combined = inputPersonalized + "@" + inputDomain;
+    if(isValidEmail(combined))
+    {
+      document.getElementById("resultText").innerHTML = "Success! This is a valid email! Send this person an email here!";
+      document.getElementById("successLink").innerHTML = combined;
+      document.getElementById("successLink").href = "mailto:" + combined;
+    }
+    else
+    {
+      document.getElementById("resultText").innerHTML = "Not a valid email!";
+      document.getElementById("successLink").innerHTML = "";
+      document.getElementById("successLink").href = "";
+    }
+  }
+
+	/**
+	*Test function foo.
+	* @return {Void}
+	*/
 	function callFoo()
 	{
-        	var input = document.getElementById("inputFoo").value;
-        	if(input === "")
+  	var input = document.getElementById("inputFoo").value;
+  	if(input === "")
 		{
-          		alert("Enter a string to check if it's equal to baz");
-        	} 
+  		alert("Enter a string to check if it's equal to baz");
+  	}
 		else
 		{
-          		alert(foo(input));
-        	}
-      	}
+  		alert(foo(input));
+  	}
+	}
 
-        function foo(bar)
+	/**
+	*Test function foo2
+	*@param {string} bar - The string input
+	*@return {boolean} bar === "baz" - TestxD
+	*/
+  function foo(bar)
 	{
-         	return bar === "baz";
-        }
+   	return bar === "baz";
+  }
 
+  /***********************BOOTSTRAP STUFF***********************/
+  /**
+  * Hide non-active div of nav bar
+  */
+  function showOnly(divId) {
+      $("#" + divId).show();
+      var pages = ["formatDisplay", "fooDisplay"];
+      for(i = 0; i < pages.length; i++){
+        if(divId !== pages[i]){
+          $("#" + pages[i]).hide();
+        }
+      }
+  }
+
+  /**
+  * Toggle Nav bar active
+  */
+  $('.nav.navbar-nav > li').on('click', function(e) {
+    $('.nav.navbar-nav > li').removeClass('active');
+    $(this).addClass('active');
+  });
+  /*********************END BOOTSTRAP STUFF*********************/
     </script>
 
     <script>
