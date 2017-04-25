@@ -85,6 +85,13 @@ describe("#isValidEmail - Valid email test. ", function () {
   });
 });
 
+describe("#isValidEmail - Valid email test. ", function () {
+  it("Test should return true, 'CapitalLetter@GMail.com' being passed in", function () {
+    var valid = isValidEmail_lib.isValidEmail("CapitalLetter@gmail.com");
+    expect(valid).toBeTruthy();
+  });
+});
+
 
 /*
  * These tests will test various forms of invalid emails and corner cases 
@@ -95,7 +102,7 @@ describe("#isValidEmail - Valid email test. ", function () {
 describe("#isValidEmail - invalid email test. ", function () {
   it("Test #7 should return false, '()@gmail.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("()@gmail.com");
-    expect(valid).toBeFalsy();
+    expect(valid).toBeFals();
   });
 });
 
