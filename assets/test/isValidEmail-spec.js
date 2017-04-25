@@ -41,7 +41,7 @@ var isValidEmail_lib = require('../js/isValidEmail');
 describe("#isValidEmail - Valid email test. ", function () {
   it("Test #1 should return true, 'alpha-team@gmail.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("alpha-team@gmail.com");
-    expect(valid).toBeFalsy();
+    expect(valid).toBeTruthy();
   });
 });
 
@@ -85,8 +85,9 @@ describe("#isValidEmail - Valid email test. ", function () {
   });
 });
 
+//Test capital letters
 describe("#isValidEmail - Valid email test. ", function () {
-  it("Test should return true, 'CapitalLetter@GMail.com' being passed in", function () {
+  it("Test #7 should return true, 'CapitalLetter@GMail.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("CapitalLetter@gmail.com");
     expect(valid).toBeTruthy();
   });
@@ -100,7 +101,7 @@ describe("#isValidEmail - Valid email test. ", function () {
 
 //test invalid characters in [personalized_part]
 describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #7 should return false, '()@gmail.com' being passed in", function () {
+  it("Test #8 should return false, '()@gmail.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("()@gmail.com");
     expect(valid).toBeFalsy();
   });
@@ -108,7 +109,7 @@ describe("#isValidEmail - invalid email test. ", function () {
 
 //test invalid characters in [personalized_part]
 describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #8 should return false, '<>@gmail.com' being passed in", function () {
+  it("Test #9 should return false, '<>@gmail.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("()@gmail.com");
     expect(valid).toBeFalsy();
   });
@@ -116,7 +117,7 @@ describe("#isValidEmail - invalid email test. ", function () {
 
 //test 65 characters
 describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #9 should return false, 'THIS SHOULD FAILthis5is8supposedtobethis5is8supposedtobe41longaaaaaaaa@yahoo.com' being passed in", function () {
+  it("Test #10 should return false, 'THIS SHOULD FAILthis5is8supposedtobethis5is8supposedtobe41longaaaaaaaa@yahoo.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("THIS SHOULD FAILthis5is8supposedtobethis5is8supposedtobe41longaaaaaaaa@yahoo.com");
     expect(valid).toBeFalsy();
   });
@@ -124,7 +125,7 @@ describe("#isValidEmail - invalid email test. ", function () {
 
 //test invalid character '.' as first character of [domain]
 describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #10 should return false, 'invalid@.domain.com' being passed in", function () {
+  it("Test #11 should return false, 'invalid@.domain.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("invalid@.domain.com");
     expect(valid).toBeFalsy();
   });
@@ -132,7 +133,7 @@ describe("#isValidEmail - invalid email test. ", function () {
 
 //test invalid character '.' as last character of [domain]
 describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #11 should return false, 'invalid@domain.com.' being passed in", function () {
+  it("Test #12 should return false, 'invalid@domain.com.' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("invalid@.domain.com");
     expect(valid).toBeFalsy();
   });
@@ -140,7 +141,7 @@ describe("#isValidEmail - invalid email test. ", function () {
 
 //test invalid sequence '..' in [domain]
 describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #12 should return false, 'invalid@gmail..com' being passed in", function () {
+  it("Test #13 should return false, 'invalid@gmail..com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("invalid@domain..com");
     expect(valid).toBeFalsy();
   });
@@ -148,7 +149,7 @@ describe("#isValidEmail - invalid email test. ", function () {
 
 //test no [personalized_part]
 describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #13 should return false, '@gmail.com' being passed in", function () {
+  it("Test #14 should return false, '@gmail.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("@gmail.com");
     expect(valid).toBeFalsy();
   });
@@ -157,7 +158,7 @@ describe("#isValidEmail - invalid email test. ", function () {
 
 //test no [domain]
 describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #14 should return false, 'invalid' being passed in", function () {
+  it("Test #15 should return false, 'invalid' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("invalid");
     expect(valid).toBeFalsy();
   });
@@ -165,7 +166,7 @@ describe("#isValidEmail - invalid email test. ", function () {
 
 //test no @
 describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #15 should return false, 'invalidgmail.com' being passed in", function () {
+  it("Test #16 should return false, 'invalidgmail.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("invalid");
     expect(valid).toBeFalsy();
   });
@@ -173,26 +174,38 @@ describe("#isValidEmail - invalid email test. ", function () {
 
 //test empty string
 describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #16 should return false, '' being passed in", function () {
+  it("Test #17 should return false, '' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("");
-    expect(valid).toBeTruthy();
+    expect(valid).toBeFalsy();
   });
 });
 
 //test spaces in middle
 describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #17 should return false, 'invalid email@gmail.com' being passed in", function () {
+  it("Test #18 should return false, 'invalid email@gmail.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("invalid email@gmail.com");
     expect(valid).toBeFalsy();
   });
 });
 
-//test spaces at beginning and end
-describe("#isValidEmail - invalid email test. ", function () {
-  it("Test #18 should return false, '    validemail@gmail.com    ' being passed in", function () {
-    var valid = isValidEmail_lib.isValidEmail("    validemail@gmail.com    ");
+
+/*
+
+//UNCOMMENT ONLY FOR PRESENTATION PURPOSES
+
+describe("#isValidEmail - Email test for presentation. ", function () {
+  it("Test #1 should return true, 'alpha-team@gmail.com' being passed in", function () {
+    var valid = isValidEmail_lib.isValidEmail("alpha-team@gmail.com");
+    expect(valid).toBeFalsy();
+  });
+
+  it("Test #12 should return false, 'invalid email@gmail.com' being passed in", function () {
+    var valid = isValidEmail_lib.isValidEmail("invalid email@gmail.com");
     expect(valid).toBeTruthy();
   });
-});
+
+})
+
+*/
 
 

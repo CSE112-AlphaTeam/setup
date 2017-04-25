@@ -24,14 +24,14 @@ gulp.task('http', ['unit_test'], (done) => {
 gulp.task('lint', function() {
     return gulp.src('./assets/**/*.js')
         .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
+        .pipe(jshint.reporter('jshint-stylish')).on("error", function(){process.exit(1)});
 });
 
 //unit test
 // Test JS
 gulp.task('unit_test', ['lint'],function () {
     return gulp.src('assets/test/*.js')
-        .pipe(jasmine());
+        .pipe(jasmine()).on("error", function(){process.exit(1)});
 });
 
 

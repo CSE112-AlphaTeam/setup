@@ -130,7 +130,7 @@ describe("#formatEmail - invalid email format test. ", function() {
 }); 
 
 
-/*
+
 
 //UNCOMMENT ONLY FOR PRESENTATION PURPOSES
 
@@ -149,4 +149,4 @@ describe("#formatEmail - Email test for presentation. ", function () {
   });
 }); 
 
-*/
+
