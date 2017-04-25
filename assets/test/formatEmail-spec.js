@@ -21,7 +21,7 @@ describe("#formatEmail - Valid email format test. ", function () {
   //Test "alpha-team@gmail.com"
   it("Test #1 should return true, 'alpha-team', 'gmail.com' being passed in", function () {
     var valid = formatEmail_lib.formatEmail("alpha-team", "gmail.com");
-    expect(valid).toBeTruthy();
+    expect(valid).toBeFalsy();
   });
 
    

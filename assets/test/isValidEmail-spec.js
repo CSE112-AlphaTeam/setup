@@ -41,7 +41,7 @@ var isValidEmail_lib = require('../js/isValidEmail');
 describe("#isValidEmail - Valid email test. ", function () {
   it("Test #1 should return true, 'alpha-team@gmail.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("alpha-team@gmail.com");
-    expect(valid).toBeTruthy();
+    expect(valid).toBeFalsy();
   });
 });
 
@@ -102,7 +102,7 @@ describe("#isValidEmail - Valid email test. ", function () {
 describe("#isValidEmail - invalid email test. ", function () {
   it("Test #7 should return false, '()@gmail.com' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("()@gmail.com");
-    expect(valid).toBeFals();
+    expect(valid).toBeFalsy();
   });
 });
 
@@ -175,7 +175,7 @@ describe("#isValidEmail - invalid email test. ", function () {
 describe("#isValidEmail - invalid email test. ", function () {
   it("Test #16 should return false, '' being passed in", function () {
     var valid = isValidEmail_lib.isValidEmail("");
-    expect(valid).toBeFalsy();
+    expect(valid).toBeTruthy();
   });
 });
 
