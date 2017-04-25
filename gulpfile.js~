@@ -15,7 +15,7 @@ let httpServer;
 //local host will be set up for testing purposes
 //Contents of public folder can be viewed by typing in URL
 //URL = localhost:9000
-gulp.task('http', (done) => {
+gulp.task('http', ['unit_test'], (done) => {
   const app = connect().use(serveStatic('public'));
   httpServer = http.createServer(app).listen(9000, done);
 });
@@ -24,14 +24,14 @@ gulp.task('http', (done) => {
 gulp.task('lint', function() {
     return gulp.src('./assets/**/*.js')
         .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
+        .pipe(jshint.reporter('jshint-stylish')).on("error", function(){process.exit(1)});
 });
 
 //unit test
 // Test JS
-gulp.task('unit_test', function () {
-    return gulp.src('assets/js/*.js')
-        .pipe(jasmine());
+gulp.task('unit_test', ['lint'],function () {
+    return gulp.src('assets/test/*.js')
+        .pipe(jasmine()).on("error", function(){process.exit(1)});
 });
 
 
