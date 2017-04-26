@@ -1,9 +1,9 @@
-/*
+/**
 * @method isValidEmail 
-* Takes in an string and checks whether the string is a valid formatted email
+* @description Takes in an string and checks whether the string is a valid formatted email
 *
-* @parameter {String} email - the email being validated
-* @return {Boolean} result - true if the email is valid, false if the email is invalid
+* @param {String} email - the email being validated
+* @return {Boolean} true if the email is valid, false if the email is invalid
 *
 * The regular expression pattern is based on RCF 5322: A valid email must be in 
 * the form [personalized_part]@[domain] 
