@@ -21,8 +21,7 @@ addons:
  apt:
    packages:
      - oracle-java8-set-default
-install:
-  - /usr/lib/jvm/java-8-oracle/jre/bin/java -Xmx1G -Xss32m -jar shell-stable.jar src/main.rsc
+
 script:
   gulp
 
