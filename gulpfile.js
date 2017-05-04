@@ -40,7 +40,7 @@ gulp.task('night', function() {
   return gulp.src('')
     .pipe(nightwatch({
       configFile: './nightwatch.conf.js'
-    }));
+    })).on("error", function(){process.exit(1)});
 });
 
 
