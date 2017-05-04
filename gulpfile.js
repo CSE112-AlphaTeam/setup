@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var jasmine = require('gulp-jasmine');
 var gutil = require('gulp-util');
 var jshint = require('gulp-jshint');
+var nightwatch = require('gulp-nightwatch');
 
 const http = require('http');
 const connect = require('connect');
@@ -34,9 +35,17 @@ gulp.task('unit_test', ['lint'],function () {
         .pipe(jasmine()).on("error", function(){process.exit(1)});
 });
 
+// NightWatch.js
+gulp.task('night', function() {
+  return gulp.src('')
+    .pipe(nightwatch({
+      configFile: './nightwatch.conf.js'
+    }));
+});
+
 
 // Default Task
-gulp.task('default', ['lint','unit_test', 'http'], ()=> {
+gulp.task('default', ['lint','unit_test', 'http', 'night'], ()=> {
     httpServer.close();
 });
 
